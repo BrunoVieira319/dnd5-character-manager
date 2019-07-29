@@ -1,7 +1,6 @@
 package br.com.aioria.insta
 
 import android.content.Context
-import android.os.Build
 import android.util.Log
 
 import com.android.volley.AuthFailureError
@@ -23,7 +22,7 @@ import java.nio.charset.Charset
 /**
  * Volley adapter for JSON requests that will be parsed into Java objects by Gson.
  */
-class GsonJsonRequest<T> : Request<T> {
+class GsonRequest<T> : Request<T> {
     private val gson = GsonBuilder().setLenient().create()
     private val clazz: Class<T>
     private val headers: Map<String, String>?
@@ -41,12 +40,11 @@ class GsonJsonRequest<T> : Request<T> {
     constructor(
         url: String,
         clazz: Class<T>,
-        headers: Map<String, String>,
         listener: Listener<T>,
         errorListener: ErrorListener
     ) : super(Method.GET, url, errorListener) {
         this.clazz = clazz
-        this.headers = headers
+        this.headers = null
         this.listener = listener
         this.params = null
     }
