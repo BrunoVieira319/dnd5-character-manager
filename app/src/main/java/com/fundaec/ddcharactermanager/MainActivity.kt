@@ -2,11 +2,10 @@ package com.fundaec.ddcharactermanager
 
 import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
-import com.fundaec.ddcharactermanager.activities.NewCharacter
+import com.fundaec.ddcharactermanager.activities.NewCharacterActivity
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openNewCharacterActivity() {
-        startActivity(Intent(baseContext, NewCharacter::class.java))
+        startActivity(Intent(baseContext, NewCharacterActivity::class.java))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

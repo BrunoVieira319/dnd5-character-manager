@@ -3,7 +3,7 @@ package com.fundaec.ddcharactermanager.models
 
 import com.google.gson.annotations.SerializedName
 
-data class Races(
+data class BaseJson(
     @SerializedName("count")
     val count: Int,
     @SerializedName("results")
