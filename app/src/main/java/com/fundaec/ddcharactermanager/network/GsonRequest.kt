@@ -2,19 +2,12 @@ package br.com.aioria.insta
 
 import android.content.Context
 import android.util.Log
-
-import com.android.volley.AuthFailureError
-import com.android.volley.NetworkResponse
-import com.android.volley.ParseError
-import com.android.volley.Request
-import com.android.volley.Response
+import com.android.volley.*
 import com.android.volley.Response.ErrorListener
 import com.android.volley.Response.Listener
-import com.android.volley.VolleyLog
 import com.android.volley.toolbox.HttpHeaderParser
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonSyntaxException
-
 import java.io.File
 import java.io.UnsupportedEncodingException
 import java.nio.charset.Charset
@@ -161,7 +154,7 @@ class GsonRequest<T> : Request<T> {
         return bodyContentType
     }
 
-    @Deprecated("Use {@link #getBody()}.")
+    @Deprecated("Use {@link #getBody()}.", ReplaceWith("body"))
     override fun getPostBody(): ByteArray? {
         return body
     }
@@ -172,7 +165,7 @@ class GsonRequest<T> : Request<T> {
 
     companion object {
         /** Charset for request.  */
-        private val PROTOCOL_CHARSET = "utf-8"
+        private const val PROTOCOL_CHARSET = "utf-8"
 
         /** Content result for request.  */
         private val PROTOCOL_CONTENT_TYPE = String.format("application/json; charset=%s", PROTOCOL_CHARSET)

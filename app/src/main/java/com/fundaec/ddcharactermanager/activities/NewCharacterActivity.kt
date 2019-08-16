@@ -1,38 +1,43 @@
 package com.fundaec.ddcharactermanager.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import br.com.aioria.insta.GsonRequest
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
+import com.fundaec.ddcharactermanager.R
 import com.fundaec.ddcharactermanager.models.BaseJson
 import kotlinx.android.synthetic.main.activity_new_character.*
 
-class NewCharacterActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
+class NewCharacterActivity : AppCompatActivity() {
 
     private var queue: RequestQueue? = null
     private var races: List<BaseJson.Result>? = null
-    private var spinnerRaces: Spinner? = null
     private var classes: List<BaseJson.Result>? = null
+    private var spinnerRaces: Spinner? = null
     private var spinnerClasses: Spinner? = null
+    private var selectedRace: String = ""
+    private var selectedClass: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.fundaec.ddcharactermanager.R.layout.activity_new_character)
+        setContentView(R.layout.activity_new_character)
         queue = Volley.newRequestQueue(baseContext)
 
         fetchRaces()
         fetchClasses()
 
-        next.setOnClickListener { view ->
-            var intent = Intent(baseContext, PointBuyActivity::class.java)
+        next.setOnClickListener {
+            val intent = Intent(baseContext, PointBuyActivity::class.java)
+            intent.putExtra("class", selectedClass)
+            intent.putExtra("race", selectedRace)
             startActivity(intent)
         }
     }
@@ -50,8 +55,14 @@ class NewCharacterActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 adapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
 
                 spinnerClasses = this.spinner_classes
-                spinnerClasses!!.onItemSelectedListener = SpinnerOnItemSelectedListener(classes!!)
                 spinnerClasses!!.adapter = adapter
+                spinnerClasses!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                        selectedClass = classes!![position].url
+                    }
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                    }
+                }
             },
             Response.ErrorListener { error ->
                 Toast.makeText(baseContext, error.message, Toast.LENGTH_LONG).show()
@@ -61,7 +72,7 @@ class NewCharacterActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
     }
 
     private fun fetchRaces() {
-        val url = "http://dnd5eapi.co/api/contentJson"
+        val url = "http://dnd5eapi.co/api/races"
         val request = GsonRequest(url, BaseJson::class.java,
             Response.Listener { response ->
                 races = response.results
@@ -73,8 +84,14 @@ class NewCharacterActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
                 adapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
 
                 spinnerRaces = this.spinner_races
-                spinnerRaces!!.onItemSelectedListener = SpinnerOnItemSelectedListener(races!!)
                 spinnerRaces!!.adapter = adapter
+                spinnerRaces!!.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                        selectedRace = races!![position].url
+                    }
+                    override fun onNothingSelected(parent: AdapterView<*>?) {
+                    }
+                }
             },
             Response.ErrorListener { error ->
                 Toast.makeText(baseContext, error.message, Toast.LENGTH_LONG).show()
@@ -82,12 +99,4 @@ class NewCharacterActivity : AppCompatActivity(), AdapterView.OnItemSelectedList
         )
         queue?.add(request)
     }
-
-    override fun onNothingSelected(p0: AdapterView<*>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, id: Long) {
-    }
-
 }

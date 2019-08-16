@@ -7,10 +7,31 @@
 
     <TextView
             android:text="TextView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:id="@+id/attribute"
+            android:textSize="30sp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/value"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    <TextView
+            android:text="TextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/attribute" app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="36sp"/>
+            android:id="@+id/value" android:textSize="24sp"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toStartOf="@+id/buttonUp" android:textStyle="bold"/>
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="34dp" app:srcCompat="@android:drawable/arrow_up_float"
+            android:id="@+id/buttonUp"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonDown" android:layout_marginEnd="8dp"/>
+    <ImageView
+            android:layout_width="41dp"
+            android:layout_height="35dp" app:srcCompat="@android:drawable/arrow_down_float"
+            android:id="@+id/buttonDown" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>
