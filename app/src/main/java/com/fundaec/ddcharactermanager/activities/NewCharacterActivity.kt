@@ -34,7 +34,7 @@ class NewCharacterActivity : AppCompatActivity() {
         fetchRaces()
         fetchClasses()
 
-        next.setOnClickListener {
+        buttonNextCharacterChoices.setOnClickListener {
             val intent = Intent(baseContext, PointBuyActivity::class.java)
             intent.putExtra("class", selectedClass)
             intent.putExtra("race", selectedRace)

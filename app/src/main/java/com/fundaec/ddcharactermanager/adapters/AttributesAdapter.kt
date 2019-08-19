@@ -8,8 +8,8 @@ import com.fundaec.ddcharactermanager.R
 import com.fundaec.ddcharactermanager.models.Attribute
 import kotlinx.android.synthetic.main.attribute_item.view.*
 
-class CustomAdapter(var context: Context, var attibutes: ArrayList<Attribute>)
-    : androidx.recyclerview.widget.RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class AttributesAdapter(var context: Context, var attibutes: ArrayList<Attribute>)
+    : androidx.recyclerview.widget.RecyclerView.Adapter<AttributesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.attribute_item, parent, false)
@@ -47,16 +47,16 @@ class CustomAdapter(var context: Context, var attibutes: ArrayList<Attribute>)
     class ViewHolder(
         itemView: View,
         var ctx: Context,
-        var customAdapter: CustomAdapter
+        var attributesAdapter: AttributesAdapter
     ) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         fun bindItems(attribute: Attribute) {
             itemView.attribute.text = attribute.name
             itemView.value.text = attribute.value.toString()
             itemView.buttonUp.setOnClickListener {
-                customAdapter.upAttribute(adapterPosition)
+                attributesAdapter.upAttribute(adapterPosition)
             }
             itemView.buttonDown.setOnClickListener {
-                customAdapter.downAttribute(adapterPosition)
+                attributesAdapter.downAttribute(adapterPosition)
             }
         }
 

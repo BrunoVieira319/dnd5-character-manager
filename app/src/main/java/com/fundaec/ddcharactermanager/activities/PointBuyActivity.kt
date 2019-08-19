@@ -1,5 +1,6 @@
 package com.fundaec.ddcharactermanager.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +10,7 @@ import br.com.aioria.insta.GsonRequest
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
-import com.fundaec.ddcharactermanager.adapters.CustomAdapter
+import com.fundaec.ddcharactermanager.adapters.AttributesAdapter
 import com.fundaec.ddcharactermanager.models.Attribute
 import com.fundaec.ddcharactermanager.models.AttributesEnum
 import com.fundaec.ddcharactermanager.models.Race
@@ -25,6 +26,11 @@ class PointBuyActivity : AppCompatActivity() {
         setContentView(com.fundaec.ddcharactermanager.R.layout.activity_point_buy)
         queue = Volley.newRequestQueue(baseContext)
 
+        createAttributesChoicesView()
+        fetchRacialBonus()
+    }
+
+    private fun createAttributesChoicesView() {
         var attributes = arrayListOf(
             Attribute(AttributesEnum.STRENGTH.attributeName, 15),
             Attribute(AttributesEnum.DEXTERITY.attributeName, 14),
@@ -33,11 +39,14 @@ class PointBuyActivity : AppCompatActivity() {
             Attribute(AttributesEnum.WISDOM.attributeName, 10),
             Attribute(AttributesEnum.CHARISMA.attributeName, 8)
         )
-        recycler_attributes.adapter = CustomAdapter(baseContext, attributes)
-        recycler_attributes.layoutManager = LinearLayoutManager(baseContext, RecyclerView.VERTICAL, false)
+        recyclerAttributes.adapter = AttributesAdapter(baseContext, attributes)
+        recyclerAttributes.layoutManager = LinearLayoutManager(baseContext, RecyclerView.VERTICAL, false)
 
-        fetchRacialBonus()
-        val bonusAsString = abilityBonuses?.filter { it.value != 0 }?.map { "+${it.value} ${it.key}" }
+        buttonNextPointBuy.setOnClickListener {
+            val intent = Intent(baseContext, SkillsChoicesActivity::class.java)
+            intent.putExtra("class", this.intent.getStringExtra("class"))
+            startActivity(intent)
+        }
     }
 
     private fun fetchRacialBonus() {
@@ -45,6 +54,8 @@ class PointBuyActivity : AppCompatActivity() {
             Response.Listener { race ->
                 race.abilityBonuses.forEachIndexed { index, bonus ->
                     abilityBonuses?.put(AttributesEnum.values()[index].attributeName, bonus)
+                    val bonusAsString = abilityBonuses?.filter { it.value != 0 }?.map { "+${it.value} ${it.key}" }
+                    racialBonusText.text = bonusAsString.toString()
                 }
             },
             Response.ErrorListener { error ->

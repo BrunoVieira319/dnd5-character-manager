@@ -7,27 +7,37 @@
         android:layout_height="match_parent"
         tools:context=".activities.PointBuyActivity">
     <TextView
-            android:text="Distribute Your Points"
+            android:text="Distribute your points"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/title" android:textSize="30sp"
+            android:id="@+id/title" android:textSize="24sp"
             android:layout_marginTop="32dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toTopOf="@+id/recycler_attributes"/>
+            app:layout_constraintBottom_toTopOf="@+id/recyclerAttributes"/>
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent"
-            android:id="@+id/recycler_attributes"
-            app:layout_constraintBottom_toTopOf="@+id/racialBonusText" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/title" android:layout_marginBottom="32dp"/>
+            android:id="@+id/recyclerAttributes"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/title"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/racialBonusText" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="150dp"/>
+            android:layout_marginStart="32dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
+            android:textSize="18sp" android:textStyle="bold" android:textColor="#3F51B5"
+            android:layout_marginTop="50dp"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerAttributes"/>
+    <Button
+            android:text="Next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonNextPointBuy"
+            app:layout_constraintTop_toBottomOf="@+id/racialBonusText" android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
