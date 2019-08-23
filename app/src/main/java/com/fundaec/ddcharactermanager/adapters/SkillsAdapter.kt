@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.skill_choice_item.view.*
 class SkillsAdapter(var context: Context, var skills: List<Skill>, val choose: Int) :
     androidx.recyclerview.widget.RecyclerView.Adapter<SkillsAdapter.ViewHolder>() {
 
-    private var selected = 0
+    var selected = 0
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.skill_choice_item, parent, false)
@@ -43,6 +43,7 @@ class SkillsAdapter(var context: Context, var skills: List<Skill>, val choose: I
             itemView.checkBoxSkill.text = skill.skillName
             itemView.checkBoxSkill.setOnCheckedChangeListener { _, _ ->
                 skill.selected = !skill.selected
+                skillsAdapter.countChoose()
             }
         }
     }

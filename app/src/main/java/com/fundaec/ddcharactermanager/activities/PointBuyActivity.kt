@@ -45,6 +45,8 @@ class PointBuyActivity : AppCompatActivity() {
         buttonNextPointBuy.setOnClickListener {
             val intent = Intent(baseContext, SkillsChoicesActivity::class.java)
             intent.putExtra("class", this.intent.getStringExtra("class"))
+            intent.putExtra("race", this.intent.getStringExtra("race"))
+            intent.putParcelableArrayListExtra("attributes", attributes)
             startActivity(intent)
         }
     }
