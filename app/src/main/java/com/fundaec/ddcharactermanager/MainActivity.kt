@@ -4,24 +4,44 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import br.com.aioria.insta.GsonRequest
+import com.android.volley.RequestQueue
+import com.android.volley.Response
+import com.android.volley.toolbox.Volley
 import com.fundaec.ddcharactermanager.activities.NewCharacterActivity
+import com.fundaec.ddcharactermanager.models.CharacterClass
+import com.fundaec.ddcharactermanager.models.CharacterMainDto
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    private var queue: RequestQueue? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        queue = Volley.newRequestQueue(baseContext)
 
         fab.setOnClickListener {
-            openNewCharacterActivity()
+            startActivity(Intent(baseContext, NewCharacterActivity::class.java))
         }
+
+        fetchCharacters()
     }
 
-    private fun openNewCharacterActivity() {
-        startActivity(Intent(baseContext, NewCharacterActivity::class.java))
+    private fun fetchCharacters() {
+        val request = GsonRequest("myapi", Array<CharacterMainDto>::class.java,
+            Response.Listener { characters ->
+                
+            },
+            Response.ErrorListener {
+                Toast.makeText(baseContext, it.toString(), Toast.LENGTH_LONG).show()
+            }
+        )
+        queue?.add(request)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

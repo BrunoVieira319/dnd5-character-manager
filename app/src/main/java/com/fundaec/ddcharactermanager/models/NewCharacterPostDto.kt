@@ -1,6 +1,6 @@
 package com.fundaec.ddcharactermanager.models
 
-class CharacterDto (
+class NewCharacterPostDto (
     val nameCharacter: String,
     val characterClass: String,
     val race: String,
