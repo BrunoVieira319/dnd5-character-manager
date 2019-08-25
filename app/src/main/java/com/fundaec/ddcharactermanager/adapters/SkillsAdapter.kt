@@ -8,7 +8,7 @@ import com.fundaec.ddcharactermanager.R
 import com.fundaec.ddcharactermanager.models.Skill
 import kotlinx.android.synthetic.main.skill_choice_item.view.*
 
-class SkillsAdapter(var context: Context, var skills: List<Skill>, val choose: Int) :
+class SkillsAdapter(var context: Context, var skills: List<Skill>) :
     androidx.recyclerview.widget.RecyclerView.Adapter<SkillsAdapter.ViewHolder>() {
 
     var selected = 0

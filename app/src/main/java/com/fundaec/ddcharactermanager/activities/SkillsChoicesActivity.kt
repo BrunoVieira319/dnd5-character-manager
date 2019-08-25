@@ -1,9 +1,9 @@
 package com.fundaec.ddcharactermanager.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import br.com.aioria.insta.GsonRequest
@@ -23,6 +23,7 @@ import kotlinx.android.synthetic.main.activity_skills_choices.*
 class SkillsChoicesActivity : AppCompatActivity() {
 
     private var queue: RequestQueue? = null
+    private var choose: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,11 +31,12 @@ class SkillsChoicesActivity : AppCompatActivity() {
         queue = Volley.newRequestQueue(baseContext)
 
         fetchClass()
-        buttonNextSkillChoices.setOnClickListener {
+        buttonSaveCharacter.setOnClickListener {
             val adapter = recyclerSkills.adapter as SkillsAdapter
-            if (adapter.selected > adapter.choose) {
-                Toast.makeText(baseContext, "You should remove skills", Toast.LENGTH_LONG).show()
+            if (adapter.selected != this.choose) {
+                Toast.makeText(baseContext, "You should remove or choose skills", Toast.LENGTH_SHORT).show()
             } else {
+                buttonSaveCharacter.isEnabled = false
                 saveCharacter()
             }
         }
@@ -43,7 +45,7 @@ class SkillsChoicesActivity : AppCompatActivity() {
     private fun saveCharacter() {
         val skillsAdapter = recyclerSkills.adapter as SkillsAdapter
         val character = NewCharacterPostDto(
-            "Personagem",
+            intent.getStringExtra("characterName"),
             intent.getStringExtra("class"),
             intent.getStringExtra("race"),
             intent.getParcelableArrayListExtra("attributes"),
@@ -51,7 +53,7 @@ class SkillsChoicesActivity : AppCompatActivity() {
         )
         val request = GsonRequest(
             Request.Method.POST,
-            "http://192.168.56.1:8080/v1/character",
+            "http://192.168.50.65:8080/v1/characters",
             String::class.java,
             Gson().toJson(character),
             Response.Listener {
@@ -59,7 +61,8 @@ class SkillsChoicesActivity : AppCompatActivity() {
                 finishAffinity()
             },
             Response.ErrorListener {
-                Toast.makeText(baseContext, it.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(baseContext, it.message, Toast.LENGTH_LONG).show()
+                buttonSaveCharacter.isEnabled = true
             }
         )
         queue?.add(request)
@@ -68,24 +71,23 @@ class SkillsChoicesActivity : AppCompatActivity() {
     private fun fetchClass() {
         val request = GsonRequest(intent.getStringExtra("class"), CharacterClass::class.java,
             Response.Listener { characterClass ->
+                this.choose = characterClass.proficiencyChoices[0].choose
+                choices.text = "Choose $choose"
+
                 createRecyclerSkills(characterClass)
             },
             Response.ErrorListener {
-                Toast.makeText(baseContext, it.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(baseContext, it.message, Toast.LENGTH_LONG).show()
             }
         )
         queue?.add(request)
     }
 
     private fun createRecyclerSkills(characterClass: CharacterClass) {
-        val choose = characterClass.proficiencyChoices[0].choose
-        choices.text = "Choose $choose"
-
         val skillsChoices = characterClass.proficiencyChoices[0].from
         recyclerSkills.adapter = SkillsAdapter(
             baseContext,
-            skillsChoices.map { Skill(it.name) },
-            choose
+            skillsChoices.map { Skill(it.name) }
         )
         recyclerSkills.layoutManager = LinearLayoutManager(baseContext, RecyclerView.VERTICAL, false)
     }

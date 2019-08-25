@@ -1,9 +1,9 @@
 package com.fundaec.ddcharactermanager.models
 
 class NewCharacterPostDto (
-    val nameCharacter: String,
-    val characterClass: String,
-    val race: String,
+    val characterName: String,
+    val classUrl: String,
+    val raceUrl: String,
     val attributes: List<Attribute>,
     val skills: List<Skill>
 )

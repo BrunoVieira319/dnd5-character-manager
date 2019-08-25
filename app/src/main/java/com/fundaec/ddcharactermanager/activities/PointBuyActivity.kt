@@ -14,6 +14,7 @@ import com.fundaec.ddcharactermanager.adapters.AttributesAdapter
 import com.fundaec.ddcharactermanager.models.Attribute
 import com.fundaec.ddcharactermanager.models.AttributesEnum
 import com.fundaec.ddcharactermanager.models.Race
+import kotlinx.android.synthetic.main.activity_new_character.*
 import kotlinx.android.synthetic.main.activity_point_buy.*
 
 class PointBuyActivity : AppCompatActivity() {
@@ -35,7 +36,7 @@ class PointBuyActivity : AppCompatActivity() {
             Attribute(AttributesEnum.STRENGTH.attributeName, 15),
             Attribute(AttributesEnum.DEXTERITY.attributeName, 14),
             Attribute(AttributesEnum.CONSTITUTION.attributeName, 13),
-            Attribute(AttributesEnum.WISDOM.attributeName, 12),
+            Attribute(AttributesEnum.INTELLIGENCE.attributeName, 12),
             Attribute(AttributesEnum.WISDOM.attributeName, 10),
             Attribute(AttributesEnum.CHARISMA.attributeName, 8)
         )
@@ -44,6 +45,7 @@ class PointBuyActivity : AppCompatActivity() {
 
         buttonNextPointBuy.setOnClickListener {
             val intent = Intent(baseContext, SkillsChoicesActivity::class.java)
+            intent.putExtra("characterName", this.intent.getStringExtra("characterName"))
             intent.putExtra("class", this.intent.getStringExtra("class"))
             intent.putExtra("race", this.intent.getStringExtra("race"))
             intent.putParcelableArrayListExtra("attributes", attributes)

@@ -35,10 +35,15 @@ class NewCharacterActivity : AppCompatActivity() {
         fetchClasses()
 
         buttonNextCharacterChoices.setOnClickListener {
-            val intent = Intent(baseContext, PointBuyActivity::class.java)
-            intent.putExtra("class", selectedClass)
-            intent.putExtra("race", selectedRace)
-            startActivity(intent)
+            if (characterNameInput.text.isBlank()) {
+                Toast.makeText(baseContext, "Insert a name for your character", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(baseContext, PointBuyActivity::class.java)
+                intent.putExtra("characterName", characterNameInput.text.toString())
+                intent.putExtra("class", selectedClass)
+                intent.putExtra("race", selectedRace)
+                startActivity(intent)
+            }
         }
     }
 
@@ -49,10 +54,10 @@ class NewCharacterActivity : AppCompatActivity() {
                 classes = response.results
                 val adapter = ArrayAdapter(
                     baseContext,
-                    android.R.layout.simple_spinner_item,
+                    R.layout.spinner_text_item,
                     classes?.map { it -> it.name }
                 )
-                adapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
+                adapter.setDropDownViewResource(R.layout.spinner_text_item)
 
                 spinnerClasses = this.spinner_classes
                 spinnerClasses!!.adapter = adapter
@@ -78,10 +83,10 @@ class NewCharacterActivity : AppCompatActivity() {
                 races = response.results
                 val adapter = ArrayAdapter(
                     baseContext,
-                    android.R.layout.simple_spinner_item,
+                    R.layout.spinner_text_item,
                     races?.map { it -> it.name }
                 )
-                adapter.setDropDownViewResource(android.R.layout.simple_list_item_1)
+                adapter.setDropDownViewResource(R.layout.spinner_text_item)
 
                 spinnerRaces = this.spinner_races
                 spinnerRaces!!.adapter = adapter

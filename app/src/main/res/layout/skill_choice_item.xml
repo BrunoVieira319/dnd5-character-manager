@@ -9,10 +9,12 @@
             android:text="CheckBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/checkBoxSkill" android:textSize="24sp"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            android:id="@+id/checkBoxSkill" android:textSize="22sp"
+            android:layout_marginTop="4dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintVertical_bias="1.0"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"/>
+            android:layout_marginEnd="24dp" android:fontFamily="@font/expletus_sans_semibold"
+            android:textColor="#3F51B5"
+            style="@android:style/Widget.CompoundButton.CheckBox" android:textColorLink="#0288D1"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

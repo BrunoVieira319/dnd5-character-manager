@@ -13,15 +13,17 @@
             android:layout_height="wrap_content"
             android:id="@+id/title" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="32dp" android:textSize="24sp"/>
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="32dp" android:textSize="30sp"
+            android:fontFamily="@font/expletus_sans_semibold" android:textColor="#311B92"/>
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:id="@+id/recyclerSkills"
             app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/choices"/>
+            app:layout_constraintTop_toBottomOf="@+id/choices" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonSaveCharacter"/>
     <TextView
             android:text="Choose "
             android:layout_width="wrap_content"
@@ -29,13 +31,15 @@
             android:id="@+id/choices"
             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/title"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:fontFamily="@font/expletus_sans_semibold" android:textColor="#495C77"/>
     <Button
-            android:text="Next"
+            android:text="Save Character"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonNextSkillChoices"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerSkills" app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/buttonSaveCharacter"
+            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            android:layout_marginTop="40dp"/>
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:fontFamily="@font/expletus_sans_semibold"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
