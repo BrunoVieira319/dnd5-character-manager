@@ -22,9 +22,10 @@
             android:layout_marginEnd="32dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="32dp"
-            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintTop_toBottomOf="@+id/characterNameInput"
-            android:layout_marginTop="8dp" style="@android:style/Widget.Holo.Spinner"
-            android:backgroundTint="#001786" android:popupBackground="#C6C9CA"/>
+            app:layout_constraintHorizontal_bias="0.0"
+            style="@android:style/Widget.Holo.Spinner"
+            android:backgroundTint="#001786" android:popupBackground="#C6C9CA" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/characterNameInput"/>
     <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/spinner_classes"
@@ -49,12 +50,9 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:ems="10"
-            android:id="@+id/characterNameInput" android:layout_marginEnd="32dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="32dp"
-            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/title"
-            android:layout_marginTop="32dp" android:hint="Character Name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:fontFamily="@font/expletus_sans_semibold" android:textColor="#448AFF"
-            android:textColorHighlight="#00E5FF"
-            android:textColorLink="#00E676" android:textCursorDrawable="@color/colorPrimary" android:textSize="18sp"/>
+            android:id="@+id/characterNameInput" android:layout_marginStart="32dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginEnd="32dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="32dp"
+            app:layout_constraintTop_toBottomOf="@+id/title" android:fontFamily="@font/expletus_sans_semibold"
+            android:textColor="#283593" android:hint="Character Name"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

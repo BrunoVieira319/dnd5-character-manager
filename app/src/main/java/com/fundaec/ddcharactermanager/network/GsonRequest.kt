@@ -1,4 +1,4 @@
-package br.com.aioria.insta
+package com.fundaec.ddcharactermanager.network
 
 import android.content.Context
 import android.util.Log

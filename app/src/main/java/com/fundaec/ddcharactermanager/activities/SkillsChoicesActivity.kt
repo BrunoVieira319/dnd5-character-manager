@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import br.com.aioria.insta.GsonRequest
+import com.fundaec.ddcharactermanager.network.GsonRequest
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
