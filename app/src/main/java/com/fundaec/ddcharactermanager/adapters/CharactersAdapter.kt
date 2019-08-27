@@ -6,7 +6,6 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import com.fundaec.ddcharactermanager.R
 import com.fundaec.ddcharactermanager.activities.CharacterActivity
 import com.fundaec.ddcharactermanager.models.CharacterMainActivityDto

@@ -18,7 +18,7 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager, va
         var fragment: Fragment? = null
         when (position) {
             0 -> fragment = CharacterMainInfoFragment.newInstance(characterId)
-            1 -> fragment = CharacterSkillsFragment.newInstance("arg", "arg")
+            1 -> fragment = CharacterSkillsFragment.newInstance(characterId)
         }
         return fragment!!
     }

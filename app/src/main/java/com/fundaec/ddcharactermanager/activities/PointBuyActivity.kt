@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.fundaec.ddcharactermanager.network.GsonRequest
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
@@ -14,6 +13,7 @@ import com.fundaec.ddcharactermanager.adapters.AttributesAdapter
 import com.fundaec.ddcharactermanager.models.Attribute
 import com.fundaec.ddcharactermanager.models.AttributesEnum
 import com.fundaec.ddcharactermanager.models.Race
+import com.fundaec.ddcharactermanager.network.GsonRequest
 import kotlinx.android.synthetic.main.activity_point_buy.*
 
 class PointBuyActivity : AppCompatActivity() {

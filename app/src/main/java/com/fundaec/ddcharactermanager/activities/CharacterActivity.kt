@@ -1,11 +1,11 @@
 package com.fundaec.ddcharactermanager.activities
 
 import android.os.Bundle
-import com.google.android.material.tabs.TabLayout
-import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import com.fundaec.ddcharactermanager.R
 import com.fundaec.ddcharactermanager.adapters.SectionsPagerAdapter
+import com.google.android.material.tabs.TabLayout
 
 class CharacterActivity : AppCompatActivity() {
 
