@@ -8,12 +8,12 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import br.com.aioria.insta.GsonRequest
 import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.Volley
 import com.fundaec.ddcharactermanager.R
 import com.fundaec.ddcharactermanager.models.BaseJson
+import com.fundaec.ddcharactermanager.network.GsonRequest
 import kotlinx.android.synthetic.main.activity_new_character.*
 
 class NewCharacterActivity : AppCompatActivity() {

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context=".fragments.MainInfoCharacterFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:layout_width="140dp"
+                android:layout_height="150dp" tools:src="@tools:sample/avatars"
+                android:id="@+id/characterImageInfo"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
+        <TextView
+                android:text="Character Name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/characterNameInfo"
+                android:fontFamily="@font/expletus_sans_semibold" android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@+id/characterImageInfo" android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp" app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent" android:textColor="#0D47A1"/>
+        <TextView
+                android:text="Race/Class Lv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/raceClassInfo" app:layout_constraintStart_toEndOf="@+id/characterImageInfo"
+                android:layout_marginStart="16dp" app:layout_constraintTop_toBottomOf="@+id/characterNameInfo"
+                android:layout_marginTop="8dp" android:fontFamily="@font/expletus_sans_semibold"
+                android:textColor="#444444" android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"/>
+        <TextView
+                android:text="HP / HP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/hitPointsInfo" android:textSize="40sp"
+                android:fontFamily="@font/expletus_sans_semibold" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/raceClassInfo"
+                app:layout_constraintStart_toEndOf="@+id/characterImageInfo" android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"/>
+        <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/textTitle1" android:id="@+id/recyclerAttributesInfo"/>
+        <TextView
+                android:text="Attributes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/textTitle1" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+                app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/characterImageInfo"
+                android:fontFamily="@font/expletus_sans_semibold" android:textColor="#0D47A1"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

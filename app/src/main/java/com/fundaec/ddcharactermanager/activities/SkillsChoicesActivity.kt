@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import br.com.aioria.insta.GsonRequest
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -17,6 +16,7 @@ import com.fundaec.ddcharactermanager.adapters.SkillsAdapter
 import com.fundaec.ddcharactermanager.models.CharacterClass
 import com.fundaec.ddcharactermanager.models.NewCharacterPostDto
 import com.fundaec.ddcharactermanager.models.Skill
+import com.fundaec.ddcharactermanager.network.GsonRequest
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_skills_choices.*
 
@@ -53,7 +53,7 @@ class SkillsChoicesActivity : AppCompatActivity() {
         )
         val request = GsonRequest(
             Request.Method.POST,
-            "http://192.168.50.65:8080/v1/characters",
+            "https://character-manager.herokuapp.com/v1/characters",
             String::class.java,
             Gson().toJson(character),
             Response.Listener {
